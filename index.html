@@ -1,0 +1,1509 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wendao Marketing｜Wendy Chung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── CSS Variables ── */
+  :root {
+    --cream:    #F8F3ED;
+    --warm-white: #FDFAF6;
+    --sand:     #E8DDD0;
+    --tan:      #C8B49A;
+    --mocha:    #8B6E52;
+    --coffee:   #5C4233;
+    --espresso: #2E1F14;
+    --text-main: #2E1F14;
+    --text-muted: #7A6457;
+    --text-light: #A89080;
+    --accent:   #B08060;
+    --border:   rgba(139, 110, 82, 0.18);
+
+    --serif-display: 'Cormorant Garamond', serif;
+    --serif-body: 'Noto Serif TC', serif;
+    --sans: 'DM Sans', sans-serif;
+
+    --section-pad: clamp(80px, 10vw, 140px);
+    --container: 1100px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text-main);
+    font-family: var(--serif-body);
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 3px; }
+
+  /* ── Grain Texture Overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 80px);
+  }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px clamp(24px, 5vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(253, 250, 246, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 16px clamp(24px, 5vw, 80px);
+    box-shadow: 0 1px 0 var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--serif-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--espresso);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mocha);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--espresso); }
+
+  .nav-cta {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: var(--coffee);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--espresso); }
+
+  /* ── Hero ── */
+  #hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .hero-bg-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin-slow 40s linear infinite;
+  }
+
+  .hero-bg-circle-2 {
+    width: 900px; height: 900px;
+    animation: spin-slow 60s linear infinite reverse;
+  }
+
+  @keyframes spin-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .hero-left {
+    padding: clamp(120px, 15vw, 180px) clamp(24px, 5vw, 80px) clamp(80px, 10vw, 120px);
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fade-up 1s 0.3s forwards;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--mocha);
+  }
+
+  .hero-title {
+    font-family: var(--serif-display);
+    font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--espresso);
+    margin-bottom: 8px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--mocha);
+  }
+
+  .hero-tagline {
+    font-family: var(--serif-display);
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .hero-desc {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    max-width: 440px;
+    margin-bottom: 52px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: var(--coffee);
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.25s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--espresso);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: gap 0.2s, color 0.2s;
+  }
+
+  .btn-secondary::after { content: '→'; transition: transform 0.2s; }
+
+  .btn-secondary:hover {
+    color: var(--espresso);
+    gap: 14px;
+  }
+
+  /* Hero Right — Photo */
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(120px, 15vw, 180px) clamp(24px, 5vw, 80px);
+    opacity: 0;
+    animation: fade-up 1s 0.6s forwards;
+  }
+
+  .photo-frame {
+    position: relative;
+    width: clamp(260px, 30vw, 400px);
+    aspect-ratio: 3/4;
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -16px -16px 16px 16px;
+    border: 1px solid var(--tan);
+    z-index: -1;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--sand);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--text-muted);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    display: none; /* shown when photo is uploaded */
+  }
+
+  .photo-icon {
+    font-size: 2rem;
+    opacity: 0.4;
+  }
+
+  .photo-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--coffee);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+  }
+
+  /* ── About / Story ── */
+  #about {
+    padding: var(--section-pad) 0;
+    background: var(--warm-white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: start;
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .about-sticky {
+    position: sticky;
+    top: 100px;
+  }
+
+  .about-heading {
+    font-family: var(--serif-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--espresso);
+    margin-bottom: 24px;
+  }
+
+  .about-heading em {
+    font-style: italic;
+    color: var(--mocha);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    padding-bottom: 40px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 100px;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-year {
+    font-family: var(--serif-display);
+    font-size: 0.9rem;
+    color: var(--mocha);
+    padding-top: 2px;
+    font-style: italic;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: calc(100px + 24px - 4px);
+    top: 8px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--tan);
+    z-index: 1;
+  }
+
+  .timeline-content {
+    padding-left: 20px;
+  }
+
+  .timeline-role {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--espresso);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .timeline-desc {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── Stats Banner ── */
+  .stats-banner {
+    background: var(--coffee);
+    padding: 60px 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .stat-item {
+    padding: 40px 32px;
+    text-align: center;
+    background: var(--coffee);
+    transition: background 0.2s;
+  }
+
+  .stat-item:hover { background: var(--espresso); }
+
+  .stat-num {
+    font-family: var(--serif-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-num em {
+    font-style: italic;
+    color: var(--tan);
+  }
+
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--tan);
+  }
+
+  /* ── Services ── */
+  #services {
+    padding: var(--section-pad) 0;
+    background: var(--cream);
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: clamp(50px, 7vw, 90px);
+  }
+
+  .section-heading {
+    font-family: var(--serif-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--espresso);
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--mocha);
+  }
+
+  .section-sub {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    padding: clamp(32px, 4vw, 52px);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s, background 0.3s;
+  }
+
+  .service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .service-card:nth-child(2) { transition-delay: 0.1s; }
+  .service-card:nth-child(3) { transition-delay: 0.2s; }
+
+  .service-card:hover { background: var(--cream); }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--tan);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-num {
+    font-family: var(--serif-display);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--tan);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.1rem;
+    color: var(--mocha);
+  }
+
+  .service-title {
+    font-family: var(--serif-body);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--espresso);
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .service-desc {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    border: 1px solid var(--tan);
+    padding: 4px 12px;
+  }
+
+  /* ── Process ── */
+  #process {
+    padding: var(--section-pad) 0;
+    background: var(--warm-white);
+  }
+
+  .process-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: center;
+  }
+
+  .process-text .section-label { margin-bottom: 24px; }
+
+  .process-intro {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-top: 24px;
+    margin-bottom: 36px;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .process-step {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .process-step.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .process-step:nth-child(2) { transition-delay: 0.1s; }
+  .process-step:nth-child(3) { transition-delay: 0.2s; }
+  .process-step:nth-child(4) { transition-delay: 0.3s; }
+  .process-step:nth-child(5) { transition-delay: 0.4s; }
+
+  .step-num {
+    font-family: var(--serif-display);
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--tan);
+    min-width: 32px;
+    padding-top: 2px;
+  }
+
+  .step-info { flex: 1; }
+
+  .step-title {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--espresso);
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .process-visual {
+    position: relative;
+  }
+
+  .process-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 44px;
+    position: relative;
+  }
+
+  .process-card::before {
+    content: '"';
+    font-family: var(--serif-display);
+    font-size: 8rem;
+    color: var(--sand);
+    position: absolute;
+    top: -20px; left: 24px;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: var(--serif-display);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--coffee);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 24px;
+  }
+
+  .quote-attr {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mocha);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .quote-attr::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--mocha);
+  }
+
+  /* ── CTA Section ── */
+  #contact {
+    padding: var(--section-pad) 0;
+    background: var(--espresso);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: 'W';
+    font-family: var(--serif-display);
+    font-size: 40vw;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .contact-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: center;
+  }
+
+  .contact-heading {
+    font-family: var(--serif-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .contact-heading em {
+    font-style: italic;
+    color: var(--tan);
+  }
+
+  .contact-desc {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: rgba(232, 221, 208, 0.7);
+    line-height: 1.9;
+  }
+
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px 32px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+
+  .contact-item:hover {
+    border-color: var(--tan);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .contact-item-icon {
+    font-size: 1.3rem;
+    color: var(--tan);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contact-item-info {}
+
+  .contact-item-label {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 4px;
+  }
+
+  .contact-item-value {
+    font-family: var(--serif-body);
+    font-size: 0.95rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .contact-cta {
+    margin-top: 8px;
+  }
+
+  .btn-light {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--espresso);
+    background: var(--cream);
+    padding: 18px 44px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-light:hover {
+    background: var(--sand);
+    transform: translateY(-2px);
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--espresso);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 32px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: var(--serif-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tan);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copy {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: rgba(200, 180, 160, 0.5);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(200, 180, 160, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--tan); }
+
+  /* ── Divider line ── */
+  .divider {
+    width: 1px;
+    height: 80px;
+    background: var(--border);
+    margin: 0 auto;
+  }
+
+  /* ── Animations ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding-top: 120px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-sticky { position: static; }
+    .services-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-layout { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .timeline-item { grid-template-columns: 80px 1fr; }
+  }
+
+  @media (max-width: 580px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── Mobile nav toggle ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--espresso);
+    transition: all 0.3s;
+  }
+  @media (max-width: 900px) {
+    .nav-hamburger { display: flex; }
+    .nav-cta { display: none; }
+  }
+
+  /* ── Scroll indicator ── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.5;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator span {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-arrow {
+    width: 1px; height: 40px;
+    background: var(--tan);
+    position: relative;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── Highlight stripe ── */
+  .highlight {
+    display: inline;
+    background: linear-gradient(to right, transparent 50%, rgba(176, 128, 96, 0.15) 50%);
+    background-size: 200% 100%;
+    transition: background-position 0.4s;
+  }
+  .highlight:hover { background-position: -100% 0; }
+
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">Wendao <span>Marketing</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">關於我</a></li>
+    <li><a href="#services">服務項目</a></li>
+    <li><a href="#process">合作流程</a></li>
+    <li><a href="#contact">聯絡我</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">開始合作</a>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─────────── HERO ─────────── -->
+<section id="hero">
+  <div class="hero-bg-line"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle hero-bg-circle-2"></div>
+
+  <div class="hero-left container" style="max-width:none; padding-left: clamp(24px,7vw,120px);">
+    <div class="hero-eyebrow">行銷顧問 &amp; 策略師</div>
+    <h1 class="hero-title">
+      陪品牌<br>
+      <em>穩健成長</em><br>
+      的行銷夥伴
+    </h1>
+    <p class="hero-tagline">Every choice solves a problem.</p>
+    <p class="hero-desc">
+      8 年橫跨空服、外商與傳產的職涯，讓我用真實的商業視角服務每一個品牌。
+      從 SEO 到社群、LINE OA，我用數據說話，陪你走每一步。
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">與我合作</a>
+      <a href="#services" class="btn-secondary">了解服務</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-frame">
+      <div class="photo-placeholder" id="photoArea">
+        <div class="photo-icon">✦</div>
+        <span>個人照</span>
+        <img id="profileImg" src="" alt="Wendy Chung">
+      </div>
+      <div class="photo-badge">Wendy Chung</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ─────────── ABOUT ─────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-sticky">
+        <div class="section-label">About Me</div>
+        <h2 class="about-heading">
+          從萬呎高空<br>
+          到<em>數位行銷</em>
+        </h2>
+        <p style="font-family: var(--sans); font-size: 0.86rem; color: var(--text-muted); line-height:1.9; margin-top:20px;">
+          我是 Wendy，一個 INFJ、曾經的空服員，現在的行銷顧問。<br><br>
+          制服給了我舒適圈，但我選擇脫下它，去累積真正「帶得走的能力」。
+          8 年來在 FMCG、電商與傳產的實戰，讓我理解品牌從 0 到規模化的每一個痛點。
+        </p>
+      </div>
+
+      <div>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">踏入職場</div>
+              <div class="timeline-desc">高雄科技大學行銷系畢業，開始累積第一份社會歷練，最低薪資比法定工資還低。</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">空服員｜復興航空</div>
+              <div class="timeline-desc">擠進不到 3% 錄取率的窄門，在萬呎高空學會了 SOP 的力量、危機應變，以及服務的本質。</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">社群行銷 → 組長｜寶拉珍選</div>
+              <div class="timeline-desc">從零開始學行銷，操刀 SEO、社群、LINE、廣告投放與影音企劃，一路從小編升至組長。</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">行銷組長｜星歐光學（大立光集團）</div>
+              <div class="timeline-desc">進入台灣百大企業，深入理解傳產行銷運作與有限預算下的精準策略。</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">創辦人｜Wendao Marketing</div>
+              <div class="timeline-desc">整合 SEO、社群與 LINE OA 三大核心能力，以顧問形式陪伴中小品牌穩健成長。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── STATS ─────────── -->
+<div class="stats-banner">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">110,<em>000</em>+</div>
+        <div class="stat-label">SEO 文章累積瀏覽</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">27.<em>06</em>%</div>
+        <div class="stat-label">廣告投報率 ROAS</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40<em>%</em></div>
+        <div class="stat-label">LINE 開封率提升</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8<em>年</em></div>
+        <div class="stat-label">品牌行銷實戰經歷</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────── SERVICES ─────────── -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label" style="justify-content:center; text-align:center;">Services</div>
+      <h2 class="section-heading">我能為你<em>做什麼</em></h2>
+      <p class="section-sub">每一個服務背後，都是從實際品牌操盤中萃取出的打法，不是教科書理論。</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- SEO -->
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">SEO 內容行銷</div>
+        <p class="service-desc">
+          讓你的品牌在 Google 被主動找到，而不是一直追著流量跑。
+          從關鍵字研究、文章架構到持續優化，建立屬於你的免費流量護城河。
+        </p>
+        <div class="service-tags">
+          <span class="tag">關鍵字研究</span>
+          <span class="tag">長文內容規劃</span>
+          <span class="tag">Google 排名優化</span>
+          <span class="tag">數據監控</span>
+        </div>
+      </div>
+
+      <!-- 社群 -->
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">社群經營 FB / IG</div>
+        <p class="service-desc">
+          品牌人格不是靠演出來的，是靠累積出來的。
+          從內容策略、視覺規劃、互動設計到成效追蹤，讓你的社群帳號真正「活起來」。
+        </p>
+        <div class="service-tags">
+          <span class="tag">內容策略</span>
+          <span class="tag">貼文企劃</span>
+          <span class="tag">廣告投放</span>
+          <span class="tag">成效報告</span>
+        </div>
+      </div>
+
+      <!-- LINE OA -->
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">LINE 官方帳號</div>
+        <p class="service-desc">
+          把流量變成留量。從推播策略、標籤分眾到 CRM 設計，
+          幫你讓每一位進來的粉絲，都有機會成為回購的忠實客人。
+        </p>
+        <div class="service-tags">
+          <span class="tag">推播策略</span>
+          <span class="tag">會員分眾</span>
+          <span class="tag">自動回應設計</span>
+          <span class="tag">開封率優化</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PROCESS ─────────── -->
+<section id="process">
+  <div class="container">
+    <div class="process-layout">
+
+      <div class="process-text">
+        <div class="section-label">How We Work</div>
+        <h2 class="section-heading" style="font-size: clamp(1.8rem,3vw,2.8rem);">
+          合作<em>流程</em>
+        </h2>
+        <p class="process-intro">
+          我相信好的行銷，來自於真正理解你的品牌與目標客群。
+          每一個合作，我都會從頭了解你的狀況，再提出最適合的解方。
+        </p>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <div class="step-info">
+              <div class="step-title">免費諮詢 30 分鐘</div>
+              <div class="step-desc">了解你目前的行銷痛點、品牌現況，以及最想解決的問題。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <div class="step-info">
+              <div class="step-title">需求評估 &amp; 提案</div>
+              <div class="step-desc">根據你的目標與預算，提出最適合的服務組合與執行方向。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <div class="step-info">
+              <div class="step-title">策略規劃</div>
+              <div class="step-desc">建立完整的行銷策略框架與 SOP，確保方向清晰、可執行。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">04</div>
+            <div class="step-info">
+              <div class="step-title">執行 &amp; 優化</div>
+              <div class="step-desc">落地執行，持續追蹤數據，每月提供成效報告並調整策略。</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">05</div>
+            <div class="step-info">
+              <div class="step-title">長期陪伴成長</div>
+              <div class="step-desc">我不是接了案就消失，我是你品牌長期的行銷夥伴。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-visual">
+        <div class="process-card">
+          <p class="quote-text">
+            行銷不是魔法，而是一套可以被複製的商業邏輯。
+            我的工作，是幫你找到屬於你品牌的那套邏輯。
+          </p>
+          <div class="quote-attr">Wendy Chung，Wendao Marketing</div>
+        </div>
+
+        <div style="margin-top: 32px; padding: 32px; border: 1px solid var(--border);">
+          <div style="font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mocha); margin-bottom: 20px;">適合我服務的品牌</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 0.84rem; color: var(--text-muted);">
+              <span style="color: var(--mocha);">✦</span> 有產品但不知如何開始數位行銷
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 0.84rem; color: var(--text-muted);">
+              <span style="color: var(--mocha);">✦</span> 有在做行銷但看不到明顯成效
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 0.84rem; color: var(--text-muted);">
+              <span style="color: var(--mocha);">✦</span> 想建立穩定的自然流量來源
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 0.84rem; color: var(--text-muted);">
+              <span style="color: var(--mocha);">✦</span> 希望 LINE 粉絲真正轉換成回購客人
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-family: var(--sans); font-size: 0.84rem; color: var(--text-muted);">
+              <span style="color: var(--mocha);">✦</span> 想找一個可以長期合作、真正懂你的顧問
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CONTACT ─────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label" style="color: var(--tan);">
+          <span style="background: var(--tan); display:inline-block; width:32px; height:1px; margin-right:12px; vertical-align: middle;"></span>
+          Contact
+        </div>
+        <h2 class="contact-heading">
+          準備好<br>
+          <em>一起成長</em>了嗎？
+        </h2>
+        <p class="contact-desc">
+          不管你的品牌現在在什麼階段，我都很樂意先聊聊。
+          寫信給我，告訴我你目前的狀況與困惑，我們一起找答案。
+        </p>
+        <div class="contact-cta" style="margin-top: 40px;">
+          <a href="mailto:wendaomarketing@gmail.com" class="btn-light">寫信給我</a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <a href="mailto:wendaomarketing@gmail.com" class="contact-item">
+          <div class="contact-item-icon">✉</div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">wendaomarketing@gmail.com</div>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/" target="_blank" class="contact-item" id="igLink">
+          <div class="contact-item-icon">◈</div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Instagram</div>
+            <div class="contact-item-value">@wendaomarketing</div>
+          </div>
+        </a>
+
+        <div style="padding: 28px 32px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--tan); margin-bottom: 12px;">回覆時間</div>
+          <div style="font-family: var(--serif-body); font-size: 0.9rem; color: var(--cream); opacity: 0.8; line-height: 1.8;">
+            通常在 1–2 個工作天內回覆。<br>
+            歡迎附上你的品牌網址和目前行銷狀況，<br>
+            讓我可以提供更精準的初步建議。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Wendao Marketing</div>
+      <div class="footer-copy">© 2026 Wendao Marketing. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#about">關於我</a>
+        <a href="#services">服務</a>
+        <a href="mailto:wendaomarketing@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────── JS ─────────── -->
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.timeline-item, .service-card, .process-step').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (!links) return;
+    if (links.style.display === 'flex') {
+      links.style.display = '';
+    } else {
+      Object.assign(links.style, {
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'fixed',
+        top: '64px',
+        left: '0',
+        right: '0',
+        background: 'rgba(253,250,246,0.97)',
+        backdropFilter: 'blur(12px)',
+        padding: '32px 40px',
+        gap: '24px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+        zIndex: '99'
+      });
+    }
+  }
+
+  // Photo upload / drag-drop
+  const photoArea = document.getElementById('photoArea');
+  const profileImg = document.getElementById('profileImg');
+
+  photoArea.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => loadPhoto(e.target.files[0]);
+    input.click();
+  });
+
+  photoArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    photoArea.style.opacity = '0.7';
+  });
+
+  photoArea.addEventListener('dragleave', () => {
+    photoArea.style.opacity = '1';
+  });
+
+  photoArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    photoArea.style.opacity = '1';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) loadPhoto(file);
+  });
+
+  function loadPhoto(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      profileImg.src = e.target.result;
+      profileImg.style.display = 'block';
+      // Hide placeholder text
+      photoArea.querySelectorAll('.photo-icon, span').forEach(el => {
+        el.style.display = 'none';
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Stagger timeline delays
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+</script>
+
+</body>
+</html>
